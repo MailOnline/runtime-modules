@@ -1,2 +1,11 @@
-// eslint-disable-next-line no-console
-console.log('hello world');
+import install from './install';
+import list from './list';
+import load from './load';
+import register from './register';
+
+export {
+  install,
+  list,
+  load,
+  register
+};
