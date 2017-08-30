@@ -15,9 +15,80 @@ Install using [npm](http://npmjs.org/):
 $ npm install runtime-modules
 ```
 
-## Examples
+## Usage
 
-TBD
+### load
+
+Returns a promise resolving to the module if it's available in the registry
+
+```js
+import {load} from 'runtime-modules';
+
+const doSomething = async () => {
+  try {
+    const module = await load({
+      modulesPath: '/path/to/keep/modules/in',
+      name: 'module-name',
+      version: '^1.2.3' // semver range or specific version
+    });
+
+    module.moduleMethod();
+  } catch (error) {
+    // something failed loading the module
+  }
+};
+```
+
+### install
+
+Installs a specific version of a module (does not register it)
+
+```js
+import {install} from 'runtime-modules';
+
+const installPromise = install({
+  modulesPath: '/path/to/keep/modules/in',
+  name: 'module-name',
+  version: '1.2.3'
+});
+```
+
+### register
+
+Registers a specific version of a module as installed (currently just in memory, adapters to come)
+
+```js
+import {register} from 'runtime-modules';
+
+const registerPromise = register({
+  name: 'module-name',
+  version: '1.2.3'
+});
+```
+
+### list
+
+Lists modules in the registry
+
+```js
+import {list} from 'runtime-modules';
+
+const listPromise = list();
+```
+
+Example:
+```js
+[
+  {
+    name: 'module-a',
+    versions: ['1.2.3', '2.0.0']
+  },
+  {
+    name: 'module-b',
+    versions: ['3.4.5', '3.4.6', '3.4.6-rc.0']
+  }
+]
+```
 
 ## Testing
 
