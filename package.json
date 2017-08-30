@@ -1,0 +1,71 @@
+{
+  "name": "runtime-modules",
+  "version": "0.0.0-semantically-released",
+  "description": "Runtime npm module registry",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "babel src --out-dir dist",
+    "lint": "eslint --ignore-path .gitignore '**/*.js'",
+    "precommit": "npm run lint",
+    "prepush": "npm test",
+    "prepublish": "npm run lint && npm run test && npm run build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MailOnline/runtime-modules.git"
+  },
+  "author": "MailOnline <fe@mailonline.co.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MailOnline/runtime-modules/issues"
+  },
+  "homepage": "https://github.com/MailOnline/runtime-modules#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "commitizen": "^2.9.6",
+    "coveralls": "^2.13.1",
+    "eslint": "^4.5.0",
+    "eslint-config-mailonline": "^7.1.0",
+    "husky": "^0.14.3",
+    "jest": "^20.0.4",
+    "mol-conventional-changelog": "^1.2.0",
+    "rimraf": "^2.6.1",
+    "semantic-release": "^7.0.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/mol-conventional-changelog"
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "debug": false,
+          "modules": "commonjs",
+          "targets": {
+            "node": "current"
+          },
+          "useBuiltIns": true
+        }
+      ]
+    ]
+  }
+}

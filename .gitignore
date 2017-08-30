@@ -1,0 +1,11 @@
+*.log
+*.swo
+*.swp
+.DS_Store
+.idea/
+dist/
+coverage/
+dev/
+node_modules/
+yarn.lock
+package-lock.json
