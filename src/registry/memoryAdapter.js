@@ -1,8 +1,8 @@
 import {compare} from 'semver';
 
-const registry = new Map();
+const defaultRegistry = new Map();
 
-const add = ({name, version}) => {
+const add = ({name, version, registry = defaultRegistry}) => {
   const current = registry.get(name) || {
     name,
     versions: []
@@ -26,9 +26,9 @@ const add = ({name, version}) => {
   );
 };
 
-const get = ({name}) => registry.get(name) || null;
+const get = ({name, registry = defaultRegistry}) => registry.get(name) || null;
 
-const list = () => {
+const list = ({registry = defaultRegistry} = {}) => {
   const values = [];
 
   registry.forEach((value) => {
