@@ -1,12 +1,16 @@
 import {maxSatisfying} from 'semver';
+import memoryAdapter from '../registry/memoryAdapter';
 import versionsInRegistry from '../versions';
 
-const load = ({modulesPath, name, version}) => {
+const load = ({registryAdapter = memoryAdapter, modulesPath, name, version}) => {
   if (!modulesPath || !name || !version) {
     throw new Error('Need to specify modulesPath, name and version');
   }
 
-  const moduleVersions = versionsInRegistry(name);
+  const moduleVersions = versionsInRegistry({
+    name,
+    registryAdapter
+  });
 
   if (!moduleVersions) {
     throw new Error('No versions of the module found in the registry');

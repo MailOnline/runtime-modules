@@ -1,7 +1,7 @@
-import {get} from '../registryInMemory';
+import memoryAdapter from '../registry/memoryAdapter';
 
-const versions = (name) => {
-  const moduleInfo = get(name) || null;
+const versions = ({registryAdapter = memoryAdapter, name}) => {
+  const moduleInfo = registryAdapter.get({name}) || null;
 
   return moduleInfo && moduleInfo.versions;
 };

@@ -26,7 +26,7 @@ const add = ({name, version}) => {
   );
 };
 
-const get = (name) => registry.get(name) || null;
+const get = ({name}) => registry.get(name) || null;
 
 const list = () => {
   const values = [];
@@ -43,3 +43,11 @@ export {
   get,
   list
 };
+
+const memoryAdapter = {
+  add,
+  get,
+  list
+};
+
+export default memoryAdapter;
