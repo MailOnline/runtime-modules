@@ -1,8 +1,8 @@
 import {install as npmInstall, load as npmLoad} from '../npm';
 
-const install = async ({modulesPath, name, version}) => {
-  if (!modulesPath || !name || !version) {
-    throw new Error('Need to specify modulesPath, name and version');
+const install = async ({packagesPath, name, version}) => {
+  if (!packagesPath || !name || !version) {
+    throw new Error('Need to specify packagesPath, name and version');
   }
 
   await npmLoad({
@@ -11,7 +11,7 @@ const install = async ({modulesPath, name, version}) => {
 
   // catch errors
   await npmInstall(
-    `${modulesPath}/${name}/${version}`,
+    `${packagesPath}/${name}/${version}`,
     [`${name}@${version}`]
   );
 };

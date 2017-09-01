@@ -1,9 +1,9 @@
 import memoryAdapter from '../registry/memoryAdapter';
 
 const versions = ({registryAdapter = memoryAdapter, name}) => {
-  const moduleInfo = registryAdapter.get({name}) || null;
+  const packageInfo = registryAdapter.get({name}) || null;
 
-  return moduleInfo && moduleInfo.versions;
+  return packageInfo && packageInfo.versions;
 };
 
 export default versions;
